@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 512 512" role="img" aria-label="Green Travel icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#29a36a"/>
+      <stop offset="100%" stop-color="#0d6b3a"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect x="24" y="24" width="464" height="464" rx="96" ry="96" fill="url(#bg)"/>
+
+  <!-- Map pin with leaf (white) -->
+  <g filter="url(#shadow)" transform="translate(0, -8)">
+    <!-- Pin body -->
+    <path fill="#ffffff" d="M256 96c-70.692 0-128 57.308-128 128 0 95.5 116.5 192 123.4 197.3a6 6 0 0 0 7.2 0C267.5 416 384 319.5 384 224c0-70.692-57.308-128-128-128zm0 184c-30.928 0-56-25.072-56-56s25.072-56 56-56 56 25.072 56 56-25.072 56-56 56z"/>
+    <!-- Leaf inside pin (negative space style via overlay) -->
+    <path fill="#29a36a" d="M316 216c-28-40-80-44-118-18 10-26 36-48 74-50 38-2 68 14 84 36 8 10-10 32-40 32z" opacity="0.9"/>
+  </g>
+
+  <!-- Subtle guide wave (symbolizing Korea's coastlines/travel) -->
+  <path d="M64 368c64-24 128-24 192 0s128 24 192 0" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Hidden metadata -->
+  <metadata>Title: Green Travel | Theme: Korea Tourism API powered travel info</metadata>
+</svg>

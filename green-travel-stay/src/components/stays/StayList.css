@@ -1,0 +1,44 @@
+h4 {
+  color: #fff;
+  font-size: 30px;
+}
+
+select {
+  font-size: 16px;
+  padding: 5px;
+  margin: 25px 10px;
+}
+
+.containerStay {
+  display: flex;
+  gap: 20px;
+}
+
+.cardStay {
+  font-weight: 500;
+  border-radius: 50%;
+  padding: 90px;
+  background-color: #a79e84;
+  color: #574f4b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+  margin: 25px 0 50px 0;
+}
+
+.cardStay-img {
+  padding-top: 70%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.cardStay-title {
+  font-size: 32px;
+}
+
+.cardStay-modifiedtime, .addrStay {
+  font-size: 24px;
+}

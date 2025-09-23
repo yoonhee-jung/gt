@@ -1,0 +1,39 @@
+select {
+  font-size: 16px;
+  padding: 5px;
+  margin: 25px 10px;
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.card{
+  border: 3px rgb(53, 36, 11) solid;
+  font-weight: 500;
+  border-radius: 20%;
+  padding: 30px;
+  background-color: #a79e84;
+  color: rgb(53, 36, 11);
+  text-align: center;
+  margin: 25px 0;
+}
+
+.card-img {
+  border: 3px rgb(255, 255, 255) solid;
+  padding-top: 70%;
+  background-repeat: nos-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.card-title {
+  font-size: 32px;
+}
+
+.cardmodifiedtime, .card-addr {
+  font-size: 20px;
+}
