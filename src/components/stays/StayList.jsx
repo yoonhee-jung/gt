@@ -3,12 +3,14 @@
  //시/도 에 맞춰서 -군/구-읍/면/동 뜨는데 오류 안 나게..import { useEffect } from "react";
 import StayListSelect from './StayListSelect.jsx';
 
- function StayList() {
-  
+// 이미 만든 카드 컴포넌트 재사용
 
-  return (
+export default function StayList() {
+
+ return (
     <>
       <StayListSelect />
     </>
-  )}
- export default StayList;
+  )
+   
+}

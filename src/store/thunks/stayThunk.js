@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosConfigStay from "../../configs/axiosConfig.js";
 import axios from "axios";
 
+
 const stayIndex = createAsyncThunk(
     'staySlice/stayIndex',
     async (arg, thunkAPI) => {
