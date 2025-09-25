@@ -6,8 +6,6 @@ const axiosConfigStay = {
   TYPE: 'json',
   _LDONGREGNCD: '',
   ARRANGE: 'C',
-  AREACODE: '32',
-  SIGUNGUCODE: '2',
   MODIFIEDTIME: '20250901',
   NUM_OF_ROWS: 12,
   AREACODE: '',

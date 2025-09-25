@@ -38,7 +38,7 @@ function redirectBack() {
     <div className="card-img" style={{
     backgroundImage:`url('${stayInfo.firstimage}')`}}></div>
     <p className="card-title">{stayInfo.title}</p>
-    <p className="card-modifiedtime">업데이트일: {stayInfo.modifiedtime}</p>
+    <p className="card-modifiedtime">업데이트일: {stayInfo.modifiedtime.slice(-14).slice(0,8)}</p>
     <p className="addr">{stayInfo.addr1}</p>        
     </div>
     </div>

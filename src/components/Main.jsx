@@ -6,7 +6,7 @@ function Main() {
 
   return (
     <>
-    <h1 className="titleMain">Green Travel</h1>
+    <h1 className="titleMain" onClick={() => navigate('/')}>Green Travel</h1>
     <div className="containerMain">
       <img className='title-img' onClick={() => { navigate('/festivals') }} src='/base/andon_tal.png' alt="축제 리스트" />
       <button className="buttonStay" onClick={() => { navigate('/stays')}} type="button"><span>숙박</span></button>

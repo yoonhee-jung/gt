@@ -16,7 +16,6 @@ const stayShowSlice = createSlice({
 
 export const {
     setStayInfo
-    
 } =stayShowSlice.actions;
 
 export default stayShowSlice.reducer;

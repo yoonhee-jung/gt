@@ -31,5 +31,5 @@ const festivalIndex = createAsyncThunk(
 );
 
 export { 
-  festivalIndex
-};
+  festivalIndex,
+};  
