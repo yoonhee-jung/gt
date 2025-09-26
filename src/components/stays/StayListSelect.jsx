@@ -7,12 +7,11 @@ export default function StayListSelect() {
   const LABEL_URL = "http://apis.data.go.kr/B551011/KorService2/areaCode2?numOfRows&pageNo&MobileOS=WEB&MobileApp=GT&serviceKey=17597902dc8f58a3494ac35b793fe6990adff432fd1595ecdee96800b0a7eea8&_type=json";
 
 
-const LIST_URL_BASE = "https://apis.data.go.kr/B551011/KorService2/searchStay2?MobileOS=WEB&MobileApp=GT&serviceKey=17597902dc8f58a3494ac35b793fe6990adff432fd1595ecdee96800b0a7eea8&_type=json&arrange=C&numOfRows&pageNo";
+const LIST_URL_BASE = "https://apis.data.go.kr/B551011/KorService2/searchStay2?MobileOS=WEB&MobileApp=GT&serviceKey=17597902dc8f58a3494ac35b793fe6990adff432fd1595ecdee96800b0a7eea8&_type=json&arrange=C&numOfRows&pageNo&sigunguCode";
 const AREA_PARAM_KEY = "areacode"; 
 const SERVICE_KEY_RAW = "17597902dc8f58a3494ac35b793fe6990adff432fd1595ecdee96800b0a7eea8";
 const SERVICE_KEY =
   SERVICE_KEY_RAW.includes("%") ? decodeURIComponent(SERVICE_KEY_RAW) : SERVICE_KEY_RAW;
-
   
   const [selectedId, setSelectedId]   = React.useState("");
   const [labelRows, setLabelRows]     = React.useState([]);
@@ -47,6 +46,7 @@ const SERVICE_KEY =
 
   const imgOf = (it) =>
     it.firstimage ?? it.firstimage2 ?? "";
+
 
   const formatDate = (v) => {
     if (!v) return "";
@@ -279,48 +279,69 @@ function dedupeById(rows = []) {
         {items.map((it, idx) => {
           const key = idOf(it, idx);
           const title = (it.title ?? it.name ?? "").trim() || "(제목 없음)";
-          const img   = imgOf(it);
+          const src = safeImageUrl(imgOf(it));
           const updated = formatDate(
             it.modifiedtime ??  ""
           );
+
+          function safeImageUrl(raw) {
+          if (!raw) return "";
+          let url = String(raw).trim();
+
+          // 공백/한글 경로 보정
+          url = url.replace(/\s/g, "%20");
+
+          // http → https 업그레이드, 스킴 보정
+          if (url.startsWith("//")) url = "https:" + url;
+          if (url.startsWith("http://")) url = url.replace(/^http:\/\//, "https://");
+
+          try {
+            // 유효한 URL이면 그대로 반환
+            return new URL(url).toString();
+          } catch {
+            // 상대/이상 문자열이면 일단 인코딩해서 반환
+            return encodeURI(url);
+          }
+        }
 
           return (
             <article
               key={key}
               style={{
-                border: "1px solid #eee",
+                border: "1px solid rgb(53, 36, 11)",
                 borderRadius: 12,
                 overflow: "hidden",
-                background: "#fff",
+                background: "#a79e84",
               }}
             >
               <div
                 style={{
                   height: 140,
-                  background: "#f6f6f6",
+                  background: "#a79e84",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                {img ? (
-                  <img
-                    src={img}
-                    alt={title}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    loading="lazy"
-                  />
-                ) : (
-                  <span style={{ color: "#999", fontSize: 12 }}>이미지 없음</span>
-                )}
+                {src ? (
+                <img
+                  src={src}
+                  alt={title}
+                  referrerPolicy="no-referrer"         // 🔒 핫링크(Referer) 차단 회피
+                  loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                <span style={{ color: "rgb(53, 36, 11)", fontSize: 12 }}>이미지 없음</span>
+              )}
               </div>
               <div style={{ padding: 12 }}>
                 <div style={{ fontSize: 15, fontWeight: 600 }} title={title}>
                   {title}
                 </div>
                 {updated && (
-                  <div style={{ fontSize: 12, color: "#777", marginTop: 4 }}>
-                    업데이트: {updated}
+                  <div style={{ fontSize: 12, color: "rgb(53, 36, 11)", marginTop: 4 }}>
+                    업데이트: {updated.slice(-14).slice(0,8)}
                   </div>
                 )}
               </div>
