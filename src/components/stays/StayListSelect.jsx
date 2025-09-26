@@ -207,6 +207,13 @@ function dedupeById(rows = []) {
   });
 } 
 
+function normalizeStay(json) {
+  const body = json?.response?.body;
+  const item = body?.items?.item;
+  if (!item) return [];
+  return Array.isArray(item) ? item : [item]; // ← 핵심
+}
+
   /* ───────── 선택 바뀌면 리스트 로드(1페이지만) ───────── */
   useEffect(() => {
     if (!selectedId) { setItems([]); setError(""); return; }
@@ -224,7 +231,7 @@ function dedupeById(rows = []) {
           throw new Error("JSON이 아닌 응답(키/필수 파라미터/경로 확인)");
         }
         const data = JSON.parse(raw);
-        setItems(normalize(data));
+        setItems(normalizeStay(data));
       } catch (e) {
         if (e.name !== "AbortError") setError(e.message || String(e));
       } finally {
