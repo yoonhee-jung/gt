@@ -68,23 +68,23 @@ const buildLabelUrl = () => {
     return u.toString();
   };
 
-// async function fetchJson(url, signal) {
-//     const res = await fetch(url, { signal });
-//     const ct  = res.headers.get("content-type") || "";
-//     const raw = await res.text();
-//     console.log("[FETCH]", res.status, ct, url, raw.slice(0, 200));
-//     if (!ct.includes("application/json")) {
-//       // 한도 초과(22) 감지
-//       if (raw.includes("LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR") ||
-//           raw.includes("<returnReasonCode>22</returnReasonCode>")) {
-//         setError("API 호출 한도 초과(code 22). 잠시 후 다시 시도하세요.");
-//         setCooldownUntil(Date.now() + 60 * 1000); // 60초 쿨다운
-//         return null;
-//       }
-//       throw new Error("JSON이 아닌 응답(키/파라미터/경로 확인)");
-//     }
-//     return JSON.parse(raw);
-//   }
+async function fetchJson(url, signal) {
+    const res = await fetch(url, { signal });
+    const ct  = res.headers.get("content-type") || "";
+    const raw = await res.text();
+    console.log("[FETCH]", res.status, ct, url, raw.slice(0, 200));
+    if (!ct.includes("application/json")) {
+      // 한도 초과(22) 감지
+      if (raw.includes("LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR") ||
+          raw.includes("<returnReasonCode>22</returnReasonCode>")) {
+        setError("API 호출 한도 초과(code 22). 잠시 후 다시 시도하세요.");
+        setCooldownUntil(Date.now() + 60 * 1000); // 60초 쿨다운
+        return null;
+      }
+      throw new Error("JSON이 아닌 응답(키/파라미터/경로 확인)");
+    }
+    return JSON.parse(raw);
+  }
 
   const buildListUrl = (areaId, extra = {}) => {
     const u = new URL(LIST_URL_BASE);
